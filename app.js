@@ -4,11 +4,32 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+require('dotenv').config()
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk(process.env.DB_USER + ':' + process.env.DB_PASS +'@ds249299.mlab.com:49299/0287588134');
+
+db.then(() => {
+  console.log('Connected correctly to server')
+})
+
+const collection = db.get('course')
+
+collection.find({}).then((docs) => {
+  console.log(docs)
+})
+
 var app = express();
+
+app.use(function(req, res, next) {
+  req.db = db;
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,5 +63,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(function(req, res, next) {
+  req.db = db;
+  next();
+});
+
 
 module.exports = app;
