@@ -12,17 +12,17 @@ var users = require('./routes/users');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk(process.env.DB_USER + ':' + process.env.DB_PASS +'@ds249299.mlab.com:49299/0287588134');
+var db = monk('localhost:27017/course');
 
-db.then(() => {
-  console.log('Connected correctly to server')
-})
+db.then(function() {
+    console.log('Connected correctly to server')
+});
 
 const collection = db.get('course')
 
-collection.find({}).then((docs) => {
-  console.log(docs)
-})
+collection.find({}).then(function(docs)  {
+    console.log(docs)
+});
 
 var app = express();
 
