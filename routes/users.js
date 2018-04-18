@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 /*
  * GET user list page.
  */
-router.get('/courses', ctrMain.get_courses);
+router.get('/list', ctrMain.get_courses);
 
 
 module.exports = router;
