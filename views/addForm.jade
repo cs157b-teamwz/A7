@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1= 'Adding new course'
+    form(name='add-course', method='post')
+        div.input
+            span.label Course Title
+            input(type="text", name="courseTitle")
+        div.input
+            span.label Section Number
+            input(type="text", name="sectionNum")
+        div.input
+            span.label Professor(Last, First Name)
+            input(type="text", name="professor")
+        div.input
+            span.label Office
+            input(type="text", name="office")
+        div.action
+            input(type="submit", value="add")
