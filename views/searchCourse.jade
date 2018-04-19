@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1= 'Look up course detail'
+    form(name='add-course', method='post')
+        div.input
+            span.label Course Title
+            input(type="text", name="courseTitle")
+        //div.input
+        //    span.label Section Number
+        //    input(type="text", name="sectionNum")
+        div.action
+            input(type="submit", value="Search")

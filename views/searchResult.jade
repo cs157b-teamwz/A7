@@ -1,0 +1,12 @@
+extends layout
+
+block content
+        h1 Search Result
+        h3= data.courseTitle
+        h4 Section number:  #{data.sectionNum}
+        p Professor: #{data.professor.lastName}
+        p Students:
+        ul
+            each elem in data.students
+                li
+                    p #{elem.name}

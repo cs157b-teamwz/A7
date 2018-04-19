@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    h3= message
     h1= 'Adding new course'
     form(name='add-course', method='post')
         div.input
@@ -16,4 +17,4 @@ block content
             span.label Office
             input(type="text", name="office")
         div.action
-            input(type="submit", value="add")
+            input(type="submit", value="Add")
