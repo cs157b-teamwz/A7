@@ -3,7 +3,7 @@ const router = express.Router();
 const ctrMain = require('../controllers/courses.js');
 
 /*
- * GET user list page.
+ * GET course list page.
  */
 router.get('/', ctrMain.get_courses);
 
