@@ -29,6 +29,26 @@ module.exports.add_course = function(req, res){
 
 }
 
+module.exports.post_deleteCourse = function (req, res) {
+    const db = req.db;
+    const collection = db.get('course');
+    const courseTitle = req.body.courseTitle;
+    console.log(courseTitle);
+    console.log(req.body);
+    collection.remove({"courseTitle": courseTitle}).then(function (docs) {
+        console.log(docs);
+        if(docs) {
+            res.render('deleteCourse', { "Course Title:" : courseTitle} );
+        }
+    })
+};
+
+module.exports.get_deleteCourse = function(req, res)
+{
+    const courseTitle = req.body.courseTitle;
+    res.render('deleteCourse', { "Course Title:" : courseTitle} );
+};
+
 module.exports.searchCourse = function (req, res) {
     var db = req.db;
     var collection = db.get('course');
