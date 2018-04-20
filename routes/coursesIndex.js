@@ -29,4 +29,10 @@ router.post('/deleteCourse', ctrMain.post_deleteCourse);
 //GET delete user page
 router.get('/deleteCourse', ctrMain.get_deleteCourse);
 
+// get update page
+router.get('/updateCourse', ctrMain.get_updateCourse);
+
+// update course in the database
+router.post('/updateCourse', ctrMain.post_updateCourse);
+
 module.exports = router;
