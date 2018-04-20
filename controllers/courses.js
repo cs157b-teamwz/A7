@@ -38,7 +38,7 @@ module.exports.post_deleteCourse = function (req, res) {
     collection.remove({"courseTitle": courseTitle}).then(function (docs) {
         console.log(docs);
         if(docs) {
-            res.render('deleteCourse', { "Course Title:" : courseTitle} );
+            res.render('deleteForm', {'message': "Course Deleted Successfully"})
         }
     })
 };
@@ -46,7 +46,7 @@ module.exports.post_deleteCourse = function (req, res) {
 module.exports.get_deleteCourse = function(req, res)
 {
     const courseTitle = req.body.courseTitle;
-    res.render('deleteCourse', { "Course Title:" : courseTitle} );
+    res.render('deleteCourse', {'message': " Delete?"})
 };
 
 module.exports.searchCourse = function (req, res) {
