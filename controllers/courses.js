@@ -1,11 +1,11 @@
 /*
- * GET user list page.
+ * GET courses list page.
  */
 module.exports.get_courses = function(req, res)
 {
 
-    var db = req.db;
-    var collection = db.get('course');
+    const db = req.db;
+    const collection = db.get('course');
 
     collection.find({}).then(function(docs)  {
         res.render('list', { "data" : docs });
@@ -13,25 +13,44 @@ module.exports.get_courses = function(req, res)
 };
 
 module.exports.add_course = function(req, res){
-    var db = req.db;
-    var collection = db.get('course');
+    const db = req.db;
+    const collection = db.get('course');
 
-    var prof = req.body.professor.split(',');
-    var newCourse = {"courseTitle": req.body.courseTitle,
+    const prof = req.body.professor.split(',');
+    const newCourse = {"courseTitle": req.body.courseTitle,
         "sectionNum": req.body.sectionNum,
         "professor": {"lastName": prof[0]}, "firstName": prof[1], "officeHour": {"location": req.body.office}};
     collection.insert(newCourse).then(function (docs){
-        console.log(docs)
+        console.log(docs);
         if(docs){
             res.render('addForm', {'message': "Course Added Successfully"});
         }
     })
 
-}
+};
+
+module.exports.post_deleteCourse = function (req, res) {
+    const db = req.db;
+    const collection = db.get('course');
+    const courseTitle = req.body.courseTitle;
+    console.log(courseTitle);
+    console.log(req.body);
+    collection.remove({"courseTitle": courseTitle}).then(function (docs) {
+        console.log(docs);
+        if(docs) {
+            res.render('deleteForm', {'message': "Course Deleted Successfully"})
+        }
+    })
+};
+
+module.exports.get_deleteCourse = function(req, res)
+{
+    res.render('deleteCourse', {'message': " Delete?"})
+};
 
 module.exports.searchCourse = function (req, res) {
-    var db = req.db;
-    var collection = db.get('course');
+    const db = req.db;
+    const collection = db.get('course');
     console.log(req.body);
     collection.findOne({"courseTitle": req.body.courseTitle})
         .then(function (docs) {
@@ -41,4 +60,4 @@ module.exports.searchCourse = function (req, res) {
             }
 
         })
-}
+};

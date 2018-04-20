@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1= 'Delete course'
+    form(name='delete-course', method='post')
+        div.input
+            span.label Course Title
+            input(type="text", name="courseTitle")
+        //div.input
+        //    span.label Section Number
+        //    input(type="text", name="sectionNum")
+        p
+        div.action
+            input(type="submit", value="Delete")
