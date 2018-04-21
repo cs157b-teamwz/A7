@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1= 'Update section number'
+    form(name='update_section', method='post')
+        div.input
+            span.label Course Title
+            input(type="text", name="courseTitle")
+        div.input
+            span.label Professor(Last Name)
+            input(type="text", name="professor")
+        div.input
+            span.label Section Number to Change
+            input(type="text", name="sectionNum")
+        div.action
+            input(type="submit", value="Update")
+            
+
