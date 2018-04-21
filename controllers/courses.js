@@ -73,11 +73,11 @@ module.exports.post_updateCourse = function (req, res) {
     const courseTitle = req.body.courseTitle;
     const sectionNum = req.body.sectionNum;
     const prof = req.body.professor;
+    var query = {"courseTitle":courseTitle, "professor.lastName":prof};
+    var newvalue = {$set:{"sectionNum":sectionNum}};
     
-    collection.update({"courseTitle": courseTitle, "professor.lastName": prof}, {"sectionNum":sectionNum}).then(function (docs) {
-        console.log(docs);
-        if(docs) {
-            res.render('updateForm', { 'message' : "The Section Number Updated Successfully."});
-        }
+    collection.updateOne(query, newvalue, function(err, res){
+        if(err) throw err;
+        console.log("1 document updated");
     })
 };
