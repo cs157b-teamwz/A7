@@ -61,3 +61,23 @@ module.exports.searchCourse = function (req, res) {
 
         })
 };
+
+module.exports.get_updateCourse = function(req, res)
+{
+    res.render('updateForm', {'message': "Update?"})
+};
+
+module.exports.post_updateCourse = function (req, res) {
+    const db = req.db;
+    const collection = db.get('course');
+    const courseTitle = req.body.courseTitle;
+    const sectionNum = req.body.sectionNum;
+    const prof = req.body.professor;
+    
+    collection.update({"courseTitle": courseTitle, "professor.lastName": prof}, {"sectionNum":sectionNum}).then(function (docs) {
+        console.log(docs);
+        if(docs) {
+            res.render('updateForm', { 'message' : "The Section Number Updated Successfully."});
+        }
+    })
+};
